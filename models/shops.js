@@ -1,4 +1,4 @@
-const { STATUS_CODES } = require('http');
+// const { STATUS_CODES } = require('http');
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -15,12 +15,14 @@ Shop.init(
 
         name: {
             type: DataTypes.STRING,
-            allowNull:false
+            allowNull:false,
+            unique: true,
         },
 
         address: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
 
         city: {
@@ -32,7 +34,14 @@ Shop.init(
             type: DataTypes.STRING,
             references: 'states',
             key: 'id'
-        }
-    },
-)
+        },
 
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'shop',
+    }
+);
+
+module.exports = Shop;
