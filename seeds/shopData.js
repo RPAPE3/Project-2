@@ -7,7 +7,7 @@ const shopData = [
       city: "Cave Creek",
       zip: 85331,
       phone: 6023196575,
-      state_id: 1,
+      state_id: 2,
   },
   {
       shop_name: "Larrys Engine & Marine",
@@ -15,6 +15,7 @@ const shopData = [
       city: "Tucson",
       zip: 85705,
       phone: 5206235373,
+      state_id: 2,
   },
   {
       shop_name: "Pfaff Engine Builders",
@@ -22,6 +23,7 @@ const shopData = [
       city: "Huntington Beach",
       zip: 92649,
       phone: 7148992311,
+      state_id: 4,
   },
   {
       shop_name: "Jerry Price",
@@ -29,13 +31,15 @@ const shopData = [
       city: "Castlerock",
       zip: 80104,
       phone: 3036215101,
+      state_id: 5,
   },
   {
       shop_name: "Haibeck Automotive Technology",
       address: "430 W Kay Unit D",
-      city: "Castlerock",
+      city: "Addison",
       zip: 80104,
       phone: 3036215101,
+      state_id: 11,
   },
   {
       shop_name: "Pepmeier Engine Development",
@@ -43,6 +47,7 @@ const shopData = [
       city: "Fishers",
       zip: 46040,
       phone: 3175033287,
+      state_id: 12,
   },
   {
       shop_name: "Graham Behan",
@@ -50,6 +55,7 @@ const shopData = [
       city: "New Concord",
       zip: 42076,
       phone: 2607018860,
+      state_id: 15,
   },
   {
       shop_name: "Doug Rippie Motorsports",
@@ -57,6 +63,7 @@ const shopData = [
       city: "Waverly",
       zip: 55390,
       phone: 7636586109,
+      state_id: 21,
   },
   {
       shop_name: "Crossed Flags Performance",
@@ -64,6 +71,7 @@ const shopData = [
       city: "Magnolia",
       zip: 77355,
       phone: 8327481286,
+      state_id: 41,
   },
   {
       shop_name: "JWC Performance",
@@ -71,6 +79,7 @@ const shopData = [
       city: "Chambersburg",
       zip: 17201,
       phone: 3019916991,
+      state_id: 36,
   },
   {
       shop_name: "Evolution Motorsports",
@@ -78,6 +87,7 @@ const shopData = [
       city: "Fredericksburg",
       zip: 22406,
       phone: 5407378779,
+      state_id: 44,
   },
   {
       shop_name: "Benchmark Auto",
@@ -85,6 +95,7 @@ const shopData = [
       city: "Kingston",
       zip: 98036,
       phone: 3602976812,
+      state_id: 45,
   },
   {
       shop_name: "Freedom Cars",
@@ -92,6 +103,7 @@ const shopData = [
       city: "Nashville",
       zip: 37210,
       phone: 6152545252,
+      state_id: 40,
   },
   {
       shop_name: "Brady's High Performance",
@@ -99,6 +111,7 @@ const shopData = [
       city: "Willow Street",
       zip: 17584,
       phone: 7172830056,
+      state_kd: 36,
   },
   {
       shop_name: "Vette Doctors",
@@ -106,6 +119,7 @@ const shopData = [
       city: "Amytyville",
       zip: 11701,
       phone: 6318410779,
+      state_id: 30,
   },
   {
       shop_name: "Pine Belt Chevrolet",
@@ -113,6 +127,7 @@ const shopData = [
       city: "Lakewood",
       zip: 08701,
       phone: 8883746323,
+      state_id: 28,
   },
   {
       shop_name: "Banks Chevrolet",
@@ -120,6 +135,7 @@ const shopData = [
       city: "Concord",
       zip: 03301,
       phone: 6033696657,
+      state_id: 27,
   },
   {
       shop_name: "Eberts Engine Service",
@@ -127,13 +143,15 @@ const shopData = [
       city: "New Orleans",
       zip: 70114,
       phone: 5045247681,
+      state_id: 16,
   },
   {
       shop_name: "Franks Performance",
       address: "2020 S. Susan St",
       city: "Santa Ana",
-      zip: 85331,
+      zip: 92704,
       phone: 7144035758,
+      shop_id: 4,
   },
   {
       shop_name: "Precision Motive",
@@ -141,6 +159,7 @@ const shopData = [
       city: "Hayward",
       zip: 94544,
       phone: 5108860789,
+      state_id: 4,
   },
   {
       shop_name: "Northstar Automotive",
@@ -148,6 +167,7 @@ const shopData = [
       city: "Sunbury",
       zip: 43074,
       phone: 7409657525,
+      state_id: 33,
   },
   {
       shop_name: "Purifoy Chevrolet",
@@ -155,6 +175,7 @@ const shopData = [
       city: "Fort Lupton",
       zip: 80621,
       phone: 7202305871,
+      state_id: 5,
   },
   {
       shop_name: "Corvette Masters",
@@ -162,6 +183,7 @@ const shopData = [
       city: "Maitland",
       zip: 32751,
       phone: 4078313990,
+      state_id: 8,
   },
   {
       shop_name: "ss performance auto",
@@ -169,6 +191,7 @@ const shopData = [
       city: "South Miami",
       zip: 33143,
       phone: 3056689792,
+      state_id: 8,
   },
   {
       shop_name: "South Georgia Corvette",
@@ -176,6 +199,7 @@ const shopData = [
       city: "Thomasville",
       zip: 31757,
       phone: 2292264447,
+      state_id: 9,
   }
 ];
 
