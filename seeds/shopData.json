@@ -1,0 +1,202 @@
+[
+  {
+      "name": "ZR51 Performance",
+      "address": "5612 E Alameda Ct",
+      "city": "Cave Creek",
+      "zip": "85331",
+      "phone": "6023196575",
+      "review": "This guy is the best" 
+  },
+  {
+      "name": "Larrys Engine & Marine",
+      "address": "600 W Lester",
+      "city": "Tucson",
+      "zip": "85705",
+      "phone": "5206235373",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Pfaff Engine Builders",
+      "address": "5362 System Drive",
+      "city": "Huntington Beach",
+      "zip": "92649",
+      "phone": "7148992311",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Jerry Price",
+      "address": "3160 N Industrial Way",
+      "city": "Castlerock",
+      "zip": "80104",
+      "phone": "3036215101",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Haibeck Automotive Technology",
+      "address": "430 W Kay Unit D",
+      "city": "Castlerock",
+      "zip": "80104",
+      "phone": "3036215101",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Pepmeier Engine Development",
+      "address": "10298 Copper Ridge Drive",
+      "city": "Fishers",
+      "zip": "46040",
+      "phone": "3175033287",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Graham Behan",
+      "address": "",
+      "city": "New Concord",
+      "zip": "42076",
+      "phone": "2607018860",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Doug Rippie Motorsports",
+      "address": "412 Pacific Ave",
+      "city": "Waverly",
+      "zip": "55390",
+      "phone": "7636586109",
+      "review": "This guy is the pretty good"
+  },
+  {
+      "name": "Crossed Flags Performance",
+      "address": "37007 Red Rock",
+      "city": "Magnolia",
+      "zip": "77355",
+      "phone": "8327481286",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "JWC Performance",
+      "address": "605 Guilford Ave",
+      "city": "Chambersburg",
+      "zip": "17201",
+      "phone": "3019916991",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Evolution Motorsports",
+      "address": "88 Le Way Dr",
+      "city": "Fredericksburg",
+      "zip": "22406",
+      "phone": "5407378779",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Benchmark Auto",
+      "address": "8248 NE SR 104",
+      "city": "Kingston",
+      "zip": "98036",
+      "phone": "360-297-6812",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Freedom Cars",
+      "address": "31 Cleveland Ave",
+      "city": "Nashville",
+      "zip": "37210",
+      "phone": "6152545252",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Brady's High Performance",
+      "address": "386 Millwood Rd.",
+      "city": "Willow Street",
+      "zip": "17584",
+      "phone": "7172830056",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Vette Doctors",
+      "address": "52 Elm Pl",
+      "city": "Amytyville",
+      "zip": "11701",
+      "phone": "6318410779",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Pine Belt Chevrolet",
+      "address": "1088 RT-88",
+      "city": "Lakewood",
+      "zip": "08701",
+      "phone": "8883746323",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Banks Chevrolet",
+      "address": "137 Manchester St",
+      "city": "Concord",
+      "zip": "03301",
+      "phone": "6033696657",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Eberts Engine Service",
+      "address": "3101 Patterson Dr",
+      "city": "New Orleans",
+      "zip": "70114",
+      "phone": "5045247681",
+      "reviews": "This guy is the pretty good"
+  },
+  {
+      "name": "Franks Performance",
+      "address": "2020 S. Susan St",
+      "city": "Santa Ana",
+      "zip": "85331",
+      "phone": "7144035758",
+      "comment": "This guy is the best"
+  },
+  {
+      "name": "Precision Motive",
+      "address": "25789 Dollar St",
+      "city": "Hayward",
+      "zip": "94544",
+      "phone": "5108860789",
+      "comment": "Great quality of work!"
+  },
+  {
+      "name": "Northstar Automotive",
+      "address": "3790 OH-3",
+      "city": "Sunbury",
+      "zip": "43074",
+      "phone": "7409657525",
+      "comment": "Family run business and great knowledge"
+  },
+  {
+      "name": "Purifoy Chevrolet",
+      "address": "601 Denver Ave",
+      "city": "Fort Lupton",
+      "zip": "80621",
+      "phone": "7202305871",
+      "comment": "They finished the recall repair work quicker than quoted"
+  },
+  {
+      "name": "Corvette Masters",
+      "address": "601 Denver Ave",
+      "city": "Maitland",
+      "zip": "32751",
+      "phone": "4078313990",
+      "comment": "Would recomend location to any corvette owner in FL"
+  },
+  {
+      "name": "ss performance auto",
+      "address": "5760 Progress Rd",
+      "city": "South Miami",
+      "zip": "33143",
+      "phone": "3056689792",
+      "comment": "Price might be a little high but you get the best service in every way!"
+  },
+  {
+      "name": "South Georgia Corvette",
+      "address": "1396 Dillon Rd",
+      "city": "Thomasville",
+      "zip": "31757",
+      "phone": "2292264447",
+      "comment": "No Reviews yet"
+  }
+  ]
