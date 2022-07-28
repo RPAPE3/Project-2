@@ -111,7 +111,7 @@ const shopData = [
       city: "Willow Street",
       zip: 17584,
       phone: 7172830056,
-      state_kd: 36,
+      state_id: 36,
   },
   {
       shop_name: "Vette Doctors",
@@ -151,7 +151,7 @@ const shopData = [
       city: "Santa Ana",
       zip: 92704,
       phone: 7144035758,
-      shop_id: 4,
+      state_id: 4,
   },
   {
       shop_name: "Precision Motive",
