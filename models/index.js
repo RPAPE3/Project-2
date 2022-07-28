@@ -1,5 +1,6 @@
 const User = require('./User');
 const Shop = require('./Shop');
+const Comment = require('./Comment')
 // const State = require('./State')
 
 // State.hasMany(Shop, {
@@ -10,4 +11,4 @@ const Shop = require('./Shop');
 //     foreignKey: 'state_id',
 //   });
 
-module.exports = { User, Shop };
+module.exports = { User, Shop, Comment };

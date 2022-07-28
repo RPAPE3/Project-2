@@ -1,4 +1,3 @@
-// const { STATUS_CODES } = require('http');
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
