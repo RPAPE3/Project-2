@@ -5,6 +5,7 @@ const { User } = require('../../models');
 
 // Create a new USER code //
 // Goes to /api/users //
+// TODO: IMPLEMENT SIGN UP
 router.post('/', async (req, res) => {
   console.log(req.body)
   try {
