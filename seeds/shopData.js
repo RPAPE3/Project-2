@@ -7,7 +7,7 @@ const shopData = [
       city: "Cave Creek",
       zip: 85331,
       phone: 6023196575,
-      state_id: 1,
+    //   state_id: 1,
   },
   {
       shop_name: "Larrys Engine & Marine",
