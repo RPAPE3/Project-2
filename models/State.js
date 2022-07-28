@@ -1,8 +1,7 @@
-// const { STATUS_CODES } = require('http');
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection')
+const sequelize = require('../config/connection');
 
-class State extends Model {}
+class State extends Model {} 
 
 State.init(
     {
@@ -13,17 +12,18 @@ State.init(
             autoIncrement: true,
         },
 
-        name: {
+        state_name: {
             type: DataTypes.STRING,
-            allowNull:false
+            allowNull: false,
         },
-
+    },
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'state',
-    }
-);
-
-module.exports = State;
+      }
+    );
+    
+    module.exports = State;

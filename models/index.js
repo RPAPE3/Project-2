@@ -1,14 +1,13 @@
-const User = require('./user');
-const Shop = require('./shops');
-const State = require('./states');
-const { hasUncaughtExceptionCaptureCallback } = require('process');
+const User = require('./User');
+const Shop = require('./Shop');
+// const State = require('./State')
 
-Shop.belongsTo(State, {
-    foreignKey:'state',
-});
+// State.hasMany(Shop, {
+//     foreignKey: 'state_id',
+//   });
+  
+//   Shop.belongsTo(State, {
+//     foreignKey: 'state_id',
+//   });
 
-State.hasMany(Shop, {
-    foreignKey:'state_id'
-});
-
-module.exports = { State, Shop };
+module.exports = { User, Shop };

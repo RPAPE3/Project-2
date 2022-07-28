@@ -2,7 +2,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Shop extends Model{} 
+class Shop extends Model {} 
 
 Shop.init(
     {
@@ -13,16 +13,14 @@ Shop.init(
             autoIncrement: true,
         },
 
-        name: {
+        shop_name: {
             type: DataTypes.STRING,
-            allowNull:false,
-            unique: true,
+            allowNull: false,
         },
 
         address: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true,
         },
 
         city: {
@@ -30,18 +28,32 @@ Shop.init(
             allowNull: false,
         },
 
-        state: {
-            type: DataTypes.STRING,
-            references: 'states',
-            key: 'id'
+        zip: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
 
+        phone: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+        },
+        
+        // state_id: {
+        //     type: DataTypes.INTEGER,
+        //     references: {
+        //       model: 'state',
+        //       key: 'id',
+        //     },
+        //   },
+    },
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'shop',
-    }
-);
+      }
+    );
+    
+    module.exports = Shop;
 
-module.exports = Shop;
