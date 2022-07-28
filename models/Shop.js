@@ -37,13 +37,13 @@ Shop.init(
             allowNull: false,
         },
         
-        // state_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //       model: 'state',
-        //       key: 'id',
-        //     },
-        //   },
+        state_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'state',
+              key: 'id',
+            },
+          },
     },
     {
         sequelize,

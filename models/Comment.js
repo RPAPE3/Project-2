@@ -17,13 +17,13 @@ Comment.init(
             allowNull: false,
         },
         
-        // shop_id: {
-        //     type: DataTypes.INTEGER,
-        //     references: {
-        //       model: 'shop',
-        //       key: 'id',
-        //     },
-        //   },
+        shop_id: {
+            type: DataTypes.INTEGER,
+            references: {
+              model: 'shop',
+              key: 'id',
+            },
+          },
     },
     {
         sequelize,

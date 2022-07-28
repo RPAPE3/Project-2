@@ -12,6 +12,11 @@ html {
   /* 2 */
 }
 
+.nav-buttons {
+  display: flex;
+  justify-content: right;
+}
+
 /* Sections
    ========================================================================== */
 /**
