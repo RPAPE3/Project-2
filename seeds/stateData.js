@@ -147,6 +147,6 @@ const stateData = [
 }
 ];
 
-const seedState = () => Shop.bulkCreate(stateData);
+const seedState = () => State.bulkCreate(stateData);
 
 module.exports = seedState;

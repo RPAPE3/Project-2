@@ -1,13 +1,22 @@
 const User = require('./User');
+const State = require('./State');
 const Shop = require('./Shop');
-// const State = require('./State')
+const Comment = require('./Comment');
 
-// State.hasMany(Shop, {
-//     foreignKey: 'state_id',
-//   });
+State.hasMany(Shop, {
+    foreignKey: 'state_id',
+  });
   
-//   Shop.belongsTo(State, {
-//     foreignKey: 'state_id',
-//   });
+  Shop.belongsTo(State, {
+    foreignKey: 'state_id',
+  });
 
-module.exports = { User, Shop };
+  Shop.hasMany(Comment, {
+    foreignKey: 'shop_id',
+  });
+  
+  Comment.belongsTo(Shop, {
+    foreignKey: 'shop_id',
+  });
+
+module.exports = { User, State, Shop, Comment };
