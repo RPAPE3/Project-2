@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const { Shop, State } = require('../../models');
 
-// come from api/shops
-// TODO: PATH FOR CREATE COMMENTS
+// TODO: PATH FOR CREATE SHOP
 router.post('/', async (req, res) => {
     console.log(req.body)
     try {
