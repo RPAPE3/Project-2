@@ -1,15 +1,15 @@
 <html>
 <head>
+  <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://cdn.anychart.com/maps-data/US_presidential_election_2008.js"></script>
   <script src="https://cdn.anychart.com/geodata/latest/countries/united_states_of_america/united_states_of_america.js"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
   <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
-  <link href="https://cdn.anychart.com/playground-css/maps_in_dashboard/USA_dashboard_multiselect/style.css" type="text/css" rel="stylesheet">
+  <script src="https://cdn.anychart.com/releases/v8/themes/light_blue.min.js"></script>
+  <link href="https://cdn.anychart.com/css/gallery.css" type="text/css" rel="stylesheet">
   <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
   <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
   <style type="text/css">
@@ -32,421 +32,301 @@
 
   <script>
 
-    var mapSeries;
-    var mapChart;
-    var tableCharts;
-    var dataSet;
-    var tableChart;
-    var populationChart;
-    var areaChart;
-    var houseSeatsChart;
+    // The data that have been used for this sample can be taken from the CDN
+    // https://cdn.anychart.com/maps-data/US_presidential_election_2008.js
+    var electionData = getElectionData(); 
+    var electionDataByState = getElectionDataByState(); 
+
+    // Obama series color settings
+    var obamaColorScale = anychart.scales.linearColor(
+      '#e3f2fd',
+      '#bbdefb',
+      '#64b5f6',
+      '#0d47a1'
+    );
+    var obamaLegendItem = {
+      iconType: 'square',
+      iconFill: '#64b5f6',
+      iconStroke: null
+    };
+
+    // McCain series color settings
+    var mcCainColorScale = anychart.scales.linearColor(
+      '#fff8e1',
+      '#ffe082',
+      '#fb8c00',
+      '#bf360c'
+    );
+    var mcCainLegendItem = {
+      iconType: 'square',
+      iconFill: '#fb8c00',
+      iconStroke: null
+    };
+
+    // global settings
+    var stateBaseUrl = 'https://cdn.anychart.com/geodata/latest/usa_states/';
+
+    var preloader;
+
+    var map;
 
     anychart.onDocumentReady(function () {
-      // The data used in this sample can be obtained from the CDN
-      // https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json
-      anychart.data.loadJsonFile(
-        'https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json',
-        function (data) {
-          // pre-processing of the data
-          for (var i = 0; i < data.length; i++) {
-            data[i].value = new Date(data[i].statehood).getUTCFullYear();
-            data[i].short = data[i].id;
+	// set chart theme
+anychart.theme('lightBlue');
+      preloader = anychart.ui.preloader();
+      preloader.render(document.getElementById('container'));
+
+      // creates root map
+      map = anychart.map();
+
+      // sets geo data
+      map.geoData('anychart.maps.united_states_of_america');
+
+      // sets credits settings
+      map
+        .credits()
+        .enabled(true)
+        .url(
+          'https://en.wikipedia.org/wiki/United_States_presidential_election,_2008'
+        )
+        .text(
+          'Data source: https://en.wikipedia.org/wiki/United_States_presidential_election,_2008'
+        );
+
+      // sets title settings
+      map
+        .title()
+        .enabled(true)
+        .useHtml(true)
+        .padding([0, 0, 10, 0])
+        .text(
+          'Repair Shops in the United States <br/><span style="color:#212121; font-size: 13px;">'
+        );
+
+      // sets map padding and interactivity settings
+      map.padding([10, 10, 10, 10]);
+      map.interactivity().selectionMode('none');
+
+      var menu = map.contextMenu();
+      // add item DrillUp for context menu
+      menu.itemsFormatter(function (items) {
+        var path = map.getDrilldownPath();
+
+        items['drill-up'] = {
+          index: 0,
+          text: 'Drill Up',
+          action: function () {
+            map.drillUp();
           }
-          dataSet = anychart.data.set(data);
-          tableChart = getTableChart();
-          mapChart = drawMap();
-          tableCharts = getTableCharts();
+        };
 
-          // Setting layout table
-          var layoutTable = anychart.standalones.table();
-          layoutTable.cellBorder(null);
-          layoutTable.container('container');
-          layoutTable.draw();
+        items['drill-up'].enabled = path.length > 1;
 
-          function getTableChart() {
-            var table = anychart.standalones.table();
-            table.cellBorder(null);
-            table.fontSize(11).vAlign('middle').fontColor('#212121');
-            table
-              .getCell(0, 0)
-              .colSpan(8)
-              .fontSize(14)
-              .vAlign('bottom')
-              .border()
-              .bottom('1px #dedede')
-              .fontColor('#7c868e');
-            table
-              .useHtml(true)
-              .contents([
-                ['Selected States Data'],
-                [
-                  null,
-                  'Name',
-                  'Capital',
-                  'Largest<br/>City',
-                  'State<br/>Since',
-                  'Population',
-                  'Area',
-                  'House<br/>Seats'
-                ],
-                [null]
-              ]);
-            table
-              .getRow(1)
-              .cellBorder()
-              .bottom('2px #dedede')
-              .fontColor('#7c868e');
-            table.getRow(0).height(45).hAlign('center');
-            table.getRow(1).height(35);
-            table.getCol(0).width(25);
-            table.getCol(1).hAlign('left');
-            table.getCol(2).hAlign('left');
-            table.getCol(3).hAlign('left');
-            table.getCol(2).width(50);
-            table.getCol(4).width(50);
-            table.getCol(5).width(50);
-            return table;
-          }
+        return items;
+      });
 
-          function solidChart(value) {
-            var gauge = anychart.gauges.circular();
-            gauge.data([value, 100]);
-            gauge.padding(5);
-            gauge.margin(0);
-            var axis = gauge.axis().radius(100).width(1).fill(null);
-            axis
-              .scale()
-              .minimum(0)
-              .maximum(100)
-              .ticks({ interval: 1 })
-              .minorTicks({ interval: 1 });
-            axis.labels().enabled(false);
-            axis.ticks().enabled(false);
-            axis.minorTicks().enabled(false);
+      // set map legend settings
+      map
+        .legend()
+        .enabled(false)
+        .position('center-top')
+        .padding([0, 0, 20, 0]);
 
-            var stroke = '1 #e5e4e4';
-            gauge
-              .bar(0)
-              .dataIndex(0)
-              .radius(80)
-              .width(40)
-              .fill('#64b5f6')
-              .stroke(null)
-              .zIndex(5);
-            gauge
-              .bar(1)
-              .dataIndex(1)
-              .radius(80)
-              .width(40)
-              .fill('#F5F4F4')
-              .stroke(stroke)
-              .zIndex(4);
-            gauge
-              .label()
-              .width('50%')
-              .height('25%')
-              .adjustFontSize(true)
-              .hAlign('center')
-              .anchor('center');
-            gauge
-              .label()
-              .hAlign('center')
-              .anchor('center')
-              .padding(5, 10)
-              .zIndex(1);
-            gauge.background().enabled(false);
-            gauge.fill(null);
-            gauge.stroke(null);
-            return gauge;
-          }
-
-          function getTableCharts() {
-            var table = anychart.standalones.table(2, 3);
-            table.cellBorder(null);
-            table.getRow(0).height(45);
-            table.getRow(1).height(25);
-            table.fontSize(11).useHtml(true).hAlign('center');
-            table
-              .getCell(0, 0)
-              .colSpan(3)
-              .fontSize(14)
-              .vAlign('bottom')
-              .border()
-              .bottom('1px #dedede');
-            table.getRow(1).cellBorder().bottom('2px #dedede');
-            populationChart = solidChart(0);
-            areaChart = solidChart(0);
-            houseSeatsChart = solidChart(0);
-            table.contents([
-              ['Percentage of Total'],
-              ['Population', 'Land Area', 'House Seats'],
-              [populationChart, areaChart, houseSeatsChart]
-            ]);
-            return table;
-          }
-
-          function changeContent(ids) {
-            var i;
-            var contents = [
-              ['List of Selected States'],
-              [
-                null,
-                'Name',
-                'State<br/>Since',
-                'Population',
-                'Water<br/>Area',
-                'House<br/>Seats'
-              ]
-            ];
-            var population = 0;
-            var area = 0;
-            var seats = 0;
-            for (i = 0; i < ids.length; i++) {
-              var data = getDataId(ids[i]);
-              population += parseInt(data.population);
-              area += parseInt(data.area);
-              seats += parseInt(data.house_seats);
-
-              var label = anychart.standalones.label();
-              label
-                .width('100%')
-                .height('100%')
-                .text('')
-                .background()
-                .enabled(true)
-                .fill({
-                  src: data.flag,
-                  mode: 'fit'
-                });
-              contents.push([
-                label,
-                data.name,
-                data.value,
-                parseInt(data.population).toLocaleString(),
-                Math.round(
-                  (parseInt(data.water_area) * 100) /
-                  (parseInt(data.water_area) + parseInt(data.land_area))
-                ) + '%',
-                data.house_seats
-              ]);
-            }
-
-            populationChart.data([
-              ((population * 100) / getDataSum('population')).toFixed(2),
-              100
-            ]);
-            populationChart
-              .label()
-              .text(
-                ((population * 100) / getDataSum('population')).toFixed(2) +
-                '%'
-              );
-
-            areaChart.data([
-              ((area * 100) / getDataSum('area')).toFixed(2),
-              100
-            ]);
-            areaChart
-              .label()
-              .text(((area * 100) / getDataSum('area')).toFixed(2) + '%');
-
-            houseSeatsChart.data([
-              ((seats * 100) / getDataSum('house_seats')).toFixed(2),
-              100
-            ]);
-            houseSeatsChart
-              .label()
-              .text(
-                ((seats * 100) / getDataSum('house_seats')).toFixed(2) + '%'
-              );
-
-            tableChart.contents(contents);
-            for (i = 0; i < ids.length; i++) {
-              tableChart.getRow(i + 2).maxHeight(35);
-            }
-          }
-
-          function drawMap() {
-            var map = anychart.map();
-            // set map title settings using html
-            map.title().padding(10, 0, 10, 0).margin(0).useHtml(true);
-            map.title(
-              'US States<br/>by the Year of Joining the Union' +
-              '<br/><span style="color:#212121; font-size: 11px;">Pick your state or a time period to see when chosen states joined</span>'
-            );
-            map.padding([0, 0, 10, 0]);
-            var credits = map.credits();
-            credits.enabled(true);
-            credits.url(
-              'https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States'
-            );
-            credits.text(
-              'Data source: https://en.wikipedia.org/wiki/List_of_states_and_territories_of_the_United_States'
-            );
-            credits.logoSrc(
-              'https://en.wikipedia.org/static/favicon/wikipedia.ico'
-            );
-
-            // set map Geo data
-            map.geoData('anychart.maps.united_states_of_america');
-
-            map.listen('pointsSelect', function (e) {
-              var selected = [];
-              var selectedPoints = e.seriesStatus[0].points;
-              for (var i = 0; i < selectedPoints.length; i++) {
-                selected.push(selectedPoints[i].id);
-              }
-              changeContent(selected);
-            });
-
-            mapSeries = map.choropleth(dataSet);
-            mapSeries.labels(null);
-            mapSeries.tooltip().useHtml(true);
-            mapSeries.tooltip().title().useHtml(true);
-            mapSeries.tooltip().titleFormat(function () {
-              var data = getDataId(this.id);
-              return (
-                this.name +
-                '<span style="font-size: 10px"> (since ' +
-                data.statehood +
-                ')</span>'
-              );
-            });
-            mapSeries.tooltip().format(function () {
-              var data = getDataId(this.id);
-              return (
-                '<span style="font-size: 12px; color: #b7b7b7">Capital: </span>' +
-                data.capital +
-                '<br/>' +
-                '<span style="font-size: 12px; color: #b7b7b7">Largest City: </span>' +
-                data.largest_city
-              );
-            });
-            var scale = anychart.scales.ordinalColor([
-              { less: 1790 },
-              { from: 1790, to: 1800 },
-              { from: 1800, to: 1820 },
-              { from: 1820, to: 1850 },
-              { from: 1850, to: 1875 },
-              { from: 1875, to: 1900 },
-              { greater: 1900 }
-            ]);
-            scale.colors([
-              '#81d4fa',
-              '#4fc3f7',
-              '#29b6f6',
-              '#039be5',
-              '#0288d1',
-              '#0277bd',
-              '#01579b'
-            ]);
-            mapSeries.hovered().fill('#f06292');
-            mapSeries
-              .selected()
-              .fill('#c2185b')
-              .stroke(anychart.color.darken('#c2185b'));
-            mapSeries.colorScale(scale);
-
-            mapSeries.stroke(function () {
-              this.iterator.select(this.index);
-              var pointValue = this.iterator.get(this.referenceValueNames[1]);
-              var color = this.colorScale.valueToColor(pointValue);
-              return anychart.color.darken(color);
-            });
-
-            var colorRange = map.colorRange();
-            colorRange.enabled(true);
-            colorRange
-              .ticks()
-              .stroke('3 #ffffff')
-              .position('center')
-              .length(20)
-              .enabled(true);
-            colorRange.colorLineSize(5);
-            colorRange
-              .labels()
-              .fontSize(11)
-              .padding(0, 0, 0, 0)
-              .format(function () {
-                var range = this.colorRange;
-                var name;
-                if (isFinite(range.start + range.end)) {
-                  name = range.start + ' - ' + range.end;
-                } else if (isFinite(range.start)) {
-                  name = 'After ' + range.start;
-                } else {
-                  name = 'Before ' + range.end;
-                }
-                return name;
-              });
-            return map;
-          }
-
-          // Creates general layout table with two inside layout tables
-          function fillInMainTable(flag) {
-            if (flag === 'wide') {
-              layoutTable.contents(
-                [
-                  [mapChart, tableCharts],
-                  [null, tableChart]
-                ],
-                true
-              );
-              layoutTable.getCell(0, 0).rowSpan(2);
-              layoutTable.getRow(0).height(null);
-              layoutTable.getRow(1).height(null);
-            } else {
-              layoutTable.contents(
-                [[mapChart], [tableCharts], [tableChart]],
-                true
-              );
-              layoutTable.getRow(0).height(350);
-              layoutTable.getRow(1).height(200);
-              layoutTable.getRow(2).height(250);
-            }
-            layoutTable.draw();
-          }
-
-          if (window.innerWidth > 768) fillInMainTable('wide');
-          else {
-            fillInMainTable('slim');
-          }
-          mapSeries.select(12);
-          mapSeries.select(13);
-          mapSeries.select(14);
-          mapSeries.select(16);
-          changeContent(['US.IN', 'US.KY', 'US.IL', 'US.IA']);
-
-          // On resize changing layout to mobile version or conversely
-          window.onresize = function () {
-            if (layoutTable.colsCount() === 1 && window.innerWidth > 767) {
-              fillInMainTable('wide');
-            } else if (
-              layoutTable.colsCount() === 2 &&
-              window.innerWidth <= 767
-            ) {
-              fillInMainTable('slim');
-            }
-          };
-
-          function getDataId(id) {
-            for (var i = 0; i < data.length; i++) {
-              if (data[i].id === id) return data[i];
-            }
-          }
-
-          function getDataSum(field) {
-            var result = 0;
-            for (var i = 0; i < data.length; i++) {
-              result += parseInt(data[i][field]);
-            }
-            return result;
-          }
-        }
+      // create choropleth series based on Obama data
+      var obamaSeries = createSeries(
+        map,
+        'Barack Obama',
+        { value: 'Obama' },
+        filterFunction(electionData, 'Obama', 'McCain')
       );
+      obamaSeries.colorScale(obamaColorScale).legendItem(obamaLegendItem);
+
+      // create choropleth series based on McCain data
+      var mcCainSeries = createSeries(
+        map,
+        'John McCain',
+        { value: 'McCain' },
+        filterFunction(electionData, 'McCain', 'Obama')
+      );
+      mcCainSeries.colorScale(mcCainColorScale).legendItem(mcCainLegendItem);
+
+      map
+        .tooltip()
+        .titleFormat(tooltipTitleFormatter)
+        .format(tooltipTextFormatter);
+
+      // set pointClick event listener
+      map.listen('pointClick', onPointClickHandler);
+
+      // set container id for the map
+      map.container('container');
+
+      // initiate map drawing
+      map.draw();
     });
+
+    function onPointClickHandler(evt) {
+      // get point data from event
+      var point = evt.point;
+
+      // get state data using data from the point
+      var stateId = point.get('id');
+      var state = point.get('state');
+
+      if (typeof state === 'undefined') return;
+
+      var stateNormalized = state.toLowerCase().replace(' ', '_');
+      var stateUrl =
+        stateBaseUrl + stateNormalized + '/' + stateNormalized + '.json';
+
+      // The data that have been used for this sample can be taken from the CDN
+      // https://cdn.anychart.com/maps-data/US_presidential_election_2008.js
+      var stateData = electionDataByState[stateId];
+      var obamaStateData = filterFunction(stateData, 'Obama', 'McCain');
+      var mcCainStateData = filterFunction(stateData, 'McCain', 'Obama');
+
+      // load state Geo data in JSON format from AnyChart CDN using jQuery
+      $.ajax({
+        type: 'GET',
+        url: stateUrl,
+        dataType: 'json',
+        beforeSend: function () {
+          // set timeout to prevent preloader in case of browser cached geo data
+          preloader.visible(true);
+        },
+        success: function (geoData) {
+          // create map fro drill down
+          var drillMap = anychart.map();
+          drillMap.geoIdField('fips');
+
+          // set drill down map title setting
+          var noDataText = stateData ? '' : ' - <b>No Data</b>';
+
+          drillMap
+            .title()
+            .enabled(true)
+            .useHtml(true)
+            .padding([0, 0, 10, 0])
+            .text(
+              'United States presidential election, 2008<br/>' +
+              '<span style="color:#212121; font-size: 13px;">In ' +
+              state +
+              ' by county' +
+              noDataText +
+              '<br> ' +
+              'To drill up Press Backspace button or use context menu</span>'
+            );
+
+          // set drill down map Geo Data settings
+          drillMap
+            .geoData(geoData)
+            // set drill down map padding settings
+            .padding([10, 10, 10, 10]);
+
+          // create choropleth series based on Obama data
+          var obamaSeries = createSeries(
+            drillMap,
+            'Barack Obama',
+            { id: 'fips', value: 'Obama' },
+            obamaStateData
+          );
+          obamaSeries.colorScale(obamaColorScale).legendItem(obamaLegendItem);
+
+          // create choropleth series based on McCain data
+          var mcCainSeries = createSeries(
+            drillMap,
+            'John McCain',
+            { id: 'fips', value: 'McCain' },
+            mcCainStateData
+          );
+          mcCainSeries
+            .colorScale(mcCainColorScale)
+            .legendItem(mcCainLegendItem);
+
+          drillMap
+            .tooltip()
+            .titleFormat(tooltipTitleFormatter)
+            .format(tooltipTextFormatter);
+
+          // initiate drill down
+          map.drillTo(stateId, drillMap);
+
+          // hide preloader
+          preloader.visible(false);
+        },
+        error: function (data) {
+          console.log('Error: ', data);
+        }
+      });
+    }
+
+    /**
+     * Create choropleth series and set common settings.
+     */
+    function createSeries(targetMap, seriesName, mapping, data) {
+      // create data set with passed data
+      var dataSet = anychart.data.set(data);
+
+      // create data mapping with passed settings
+      var seriesMapping = dataSet.mapAs(mapping);
+
+      // create choropleth series
+      var series = targetMap.choropleth(seriesMapping);
+
+      // sets common settings
+      series.name(seriesName).stroke('1.5 #fff').labels(false);
+
+      // sets tooltip settings
+      series.tooltip().useHtml(true).padding([8, 13, 10, 13]).fontSize(13);
+
+      return series;
+    }
+
+    /**
+     * Text formatting function for main map tooltip title.
+     */
+    function tooltipTitleFormatter() {
+      return this.state || this.getData('state');
+    }
+
+    /**
+     * Text formatting function for main map tooltip text.
+     */
+    function tooltipTextFormatter() {
+      var stateID = this.getData('id');
+      var notice = !electionDataByState[stateID]
+        ? '<br/><br/><span style="font-size: 11px; color: #cbcbcb">No data by counties for the state</span>'
+        : '<br/><br/><span style="font-size: 11px; color: #fafafa">Click to see results by counties</span>';
+
+      return (
+        '<span style="font-size: 12px; color: #cbcbcb">Barack Obama:</span> ' +
+        this.getData('Obama') +
+        '<span style="font-size: 12px; color: #cbcbcb">%</span><br/>' +
+        '<span style="font-size: 12px; color: #cbcbcb">John McCain:</span> ' +
+        this.getData('McCain') +
+        '<span style="font-size: 12px; color: #cbcbcb">%</span>' +
+        notice
+      );
+    }
+
+    /**
+     * @param {Array} data
+     * @param {string} field1
+     * @param {string} field2
+     * @returns {Array}
+     */
+    function filterFunction(data, field1, field2) {
+      var result = [];
+      if (data) {
+        for (var i = 0; i < data.length; i++) {
+          if (data[i][field1] >= data[i][field2]) result.push(data[i]);
+        }
+      }
+      return result;
+    }
   
 </script>
 </body>
 </html>
+                
                 
