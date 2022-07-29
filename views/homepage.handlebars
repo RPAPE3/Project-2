@@ -1,8 +1,14 @@
-{{#if logged_in}}
-<div>
-  <p> Test Test</p>
-  {{> map-view }}
+
+<div class="container">
+  <div class="row">
+
+    <div class="col-9">
+      {{> map-view }}
+    </div>
+
+    <div class="col-3">
+      {{> right-side }}
+    </div>
   
-  
+  </div>
 </div>
-{{/if}}
