@@ -1,26 +1,29 @@
 <body>
-    
-
-        
-<div  class="position-absolute top-0 start-50 translate-middle"><p>Shop Name</p></div>
+            
+<div  class="position-absolute top-0 start-50 translate-middle"></div>
 
             <div  class="position-absolute top-0 start-50 translate-middle">
-                <label for="address" class="position-absolute top-0 start-50 translate-middle">Shop Address:  </label>
-            </div>
-            
-            <div>
-            <label for="CityName">City:</label>
+                <label for="address" class="position-absolute top-0 start-50 translate-middle"></label>
             </div>
             <div>
-            <label for="zip" >zip:</label>
+            <label for="CityName">{{ shop.shop_name}}</label>
             </div>
             <div>
-            <label for="phone" >phone:</label>
+            <label for="CityName">Shop Address: {{ shop.address }} </label>
+            </div>
+            <div>
+            <label for="CityName">City: {{ shop.city }}</label>
+            </div>
+            <div>
+            <label for="zip" >zip: {{ shop.zip }}</label>
+            </div>
+            <div>
+            <label for="phone" >phone:{{ shop.phone }}</label>
             </div>
         </div>
 
         <div>
-            <label for="Comments" >Comments and Reviews:</label>
+            <label for="Comments" >Comments and Reviews: {{ Comment.comment }}</label>
             </div>
 
             <div>

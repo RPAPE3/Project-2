@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "seed":"node seeds/"  
+    "seed": "node seeds/"
   },
   "name": "project-2",
   "description": "",
