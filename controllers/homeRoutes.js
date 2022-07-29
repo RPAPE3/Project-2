@@ -25,7 +25,7 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-// shops route 
+// // shops route 
 router.get('/state/shops/', async (req, res) => {
     
   try {
