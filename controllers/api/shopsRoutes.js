@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Shop } = require('../../models');
 
 // come from api/shops
+// TODO: PATH FOR CREATE COMMENTS
 router.post('/', async (req, res) => {
     console.log(req.body)
     try {
@@ -17,4 +18,6 @@ router.post('/', async (req, res) => {
       res.status(400).json(err);
     }
   });
+
+  module.exports = router;
   
