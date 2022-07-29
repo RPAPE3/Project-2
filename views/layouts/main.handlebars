@@ -17,6 +17,10 @@
       Repair Shops
     </h1>
     <nav class="nav-buttons"> 
+
+    {{#unless logged_in}}
+    <button class="btn" id="login">login/create</button>
+    {{/unless}}
       
     {{#if logged_in}}
       <button class="btn" id="logout">logout</button>
