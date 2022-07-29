@@ -15,7 +15,7 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/'); //might need to change path?
       } else {
-        alert('Failed to sign up.');
+        alert('Failed to create an account.');
       }
     }
   };
