@@ -42,6 +42,27 @@ router.get('/state/:id', async (req, res) => {
   }
 });
 
+// Chosen shop page 
+
+router.get('/shop/:id', async (req, res) => {
+    
+  try {
+    const shopData = await Shop.findOne({
+      where: {id: req.params.id}
+    });
+
+    const shop = shopData.get({ plain: true });
+// needs to be rendered to a shops page
+    res.render('shops', {
+      shop,
+      
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 router.get('/login', (req, res) => {
 
   if (req.session.logged_in) {
