@@ -24,20 +24,20 @@
     
 
         
-<div  class="position-absolute top-0 start-50 translate-middle"><p>Shop Name</p></div>
+<div  class="position-absolute top-0 start-50 translate-middle"><p>{{ shop.shop_name}}</p></div>
 
             <div  class="position-absolute top-0 start-50 translate-middle">
-                <label for="address" class="position-absolute top-0 start-50 translate-middle">Shop Address:  </label>
+                <label for="address" class="position-absolute top-0 start-50 translate-middle">Shop Address: {{ shop.address }}  </label>
             </div>
             
             <div>
             <label for="CityName">City: {{ shop.city }}</label>
             </div>
             <div>
-            <label for="zip" >zip:</label>
+            <label for="zip" >zip: {{ shop.zip }}</label>
             </div>
             <div>
-            <label for="phone" >phone:</label>
+            <label for="phone" >phone:{{ shop.phone }}</label>
             </div>
         </div>
 
