@@ -10,7 +10,7 @@ router.post('/', async (req, res) => {
   // console.log(req.body)
   try {
     const userData = await User.create({
-      name: req.body.name,
+      username: req.body.username,
       email: req.body.email,
       password: req.body.password
     });
@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
     });
 
   } catch (err) {
-    res.status(400).json(err);
+    res.status(500).json(err);
   }
 });
 

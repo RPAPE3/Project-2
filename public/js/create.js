@@ -1,19 +1,19 @@
-const signupFormHandler = async (event) => {
+const createUserFormHandler = async (event) => {
     event.preventDefault();
   
-    const username = document.querySelector('#username-signup').value.trim();
-    const email = document.querySelector('#email-signup').value.trim();
-    const password = document.querySelector('#password-signup').value.trim();
+    const username = document.querySelector('#username-create').value.trim();
+    const email = document.querySelector('#email-create').value.trim();
+    const password = document.querySelector('#password-create').value.trim();
   
     if (username && email && password) {
       const response = await fetch('/api/users', {
         method: 'POST',
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ username, email, password }),
         headers: { 'Content-Type': 'application/json' },
       });
   
       if (response.ok) {
-        document.location.replace('/'); //might need to change path?
+        document.location.replace('/');
       } else {
         alert('Failed to create an account.');
       }
@@ -21,5 +21,5 @@ const signupFormHandler = async (event) => {
   };
 
   document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
+  .querySelector('.create-form')
+  .addEventListener('submit', createUserFormHandler);
