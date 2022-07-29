@@ -3,10 +3,10 @@ const { User } = require('../models');
 const { Shop } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+// withAuth
 
 // user route
-router.get('/', withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
     
   try {
     const userData = await User.findAll({
