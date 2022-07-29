@@ -25,10 +25,5 @@ router.post('/', async (req, res) => {
     }
   });
 
-<<<<<<< HEAD
-
-  module.exports = router;
-=======
   module.exports = router;
   
->>>>>>> aec5d680b29b3b7cfbe5182ac01808980c5e555a
