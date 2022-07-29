@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const { Shop, State } = require('../../models');
+const withAuth = require('../../utils/auth');
+
+
 
 // PATH FOR CREATE NEW SHOP
 router.post('/', async (req, res) => {
@@ -16,7 +19,6 @@ router.post('/', async (req, res) => {
         city: req.body.city,
         zip: req.body.zip,
         phone: req.body.phone,
-        comment: req.body.comment,
         state: state.id,
     });
     res.status(200).json(shopData);
@@ -25,5 +27,16 @@ router.post('/', async (req, res) => {
     }
   });
 
+  router.get('/createBiz', withAuth, (req, res) => {
+
+    if (req.session.logged_in) {
+      res.render('createBiz');
+      return;
+    }
+  
+    res.render('login');
+  });
+
   module.exports = router;
   
+  // redirect
