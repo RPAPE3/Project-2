@@ -24,7 +24,7 @@ router.get('/', async (req, res) => {
     res.status(500).json(err);
   }
 });
-   
+
 // shops route 
 router.get('/state/:id', async (req, res) => {
     
@@ -33,10 +33,10 @@ router.get('/state/:id', async (req, res) => {
       // order: [['name', 'ASC']], change order if we need to 
     });
 
-    const shops = shopData.map((project) => project.get({ plain: true }));
+    const Shop = shopData.map((project) => project.get({ plain: true }));
 // needs to be rendered to a shops page
     res.render('shops', {
-      shops,
+      Shop,
       
     });
   } catch (err) {
