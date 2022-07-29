@@ -26,7 +26,7 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // shops route 
-router.get('/state/shops/', async (req, res) => {
+router.get('/state/:id', async (req, res) => {
     
   try {
     const shopData = await Shop.findAll({
