@@ -5,10 +5,6 @@ const createBizFormHandler = async (event) => {
     const address = document.querySelector('#address-create').value.trim();
     const city = document.querySelector('#city-create').value.trim();
     const state = document.querySelector('#state-create').value.trim();
-
-    // where state = state.name and returns the state.id
-    
-
     const zip = document.querySelector('#zip-create').value.trim();
     const comment = document.querySelector('#comment-create').value.trim();
 
@@ -21,7 +17,7 @@ const createBizFormHandler = async (event) => {
     });
     
         if(response.ok) {
-            document.location.replace('/');
+            document.location.replace('/shop/:id');
         } else {
             alert('Failed to add shop');
         }
