@@ -1,7 +1,8 @@
+// const { STATUS_CODES } = require('http');
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Shop extends Model {} 
+class Shop extends Model{} 
 
 Shop.init(
     {
@@ -12,14 +13,16 @@ Shop.init(
             autoIncrement: true,
         },
 
-        shop_name: {
+        name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull:false,
+            unique: true,
         },
 
         address: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
         },
 
         city: {
@@ -27,38 +30,18 @@ Shop.init(
             allowNull: false,
         },
 
-        zip: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
+        state: {
+            type: DataTypes.STRING,
+            references: 'states',
+            key: 'id'
         },
 
-        phone: {
-            type: DataTypes.BIGINT,
-            allowNull: false,
-        },
-        
-        state_id: {
-            type: DataTypes.INTEGER,
-            references: {
-              model: 'state',
-              key: 'id',
-        },
-
-        comment_id: {
-            type: DataTypes.INTEGER,
-            references: 'comment',
-            key: 'id',
-        }
-          },
-    },
-    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
         underscored: true,
         modelName: 'shop',
-      }
-    );
-    
-    module.exports = Shop;
+    }
+);
 
+module.exports = Shop;
