@@ -11,7 +11,7 @@ router.get('/', withAuth, async (req, res) => {
   try {
     const userData = await User.findAll({
       attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+      order: [['username', 'ASC']],
     });
 
     const users = userData.map((project) => project.get({ plain: true }));
@@ -25,8 +25,13 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+<<<<<<< HEAD
 // // shops route 
 router.get('/state/shops/', async (req, res) => {
+=======
+// shops route 
+router.get('/state/:id', async (req, res) => {
+>>>>>>> aec5d680b29b3b7cfbe5182ac01808980c5e555a
     
   try {
     const shopData = await Shop.findAll({
