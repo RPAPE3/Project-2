@@ -43,7 +43,7 @@
     <nav class="nav-buttons"> 
 
     {{#unless logged_in}}
-    <button class="btn" id="login">login/create</button>
+    <button class="btn" id="login-create">login/create</button>
     {{/unless}}
       
     {{#if logged_in}}
@@ -62,6 +62,10 @@
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
   {{/if}}
+
+  {{#unless logged_in}}
+   <script src="/js/login.js"></script>
+  {{/unless}}
 </body>
 
 </html>
