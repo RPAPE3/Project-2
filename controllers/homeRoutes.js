@@ -3,8 +3,6 @@ const { User } = require('../models');
 const { Shop } = require('../models');
 const withAuth = require('../utils/auth');
 
-// withAuth
-
 // user route
 router.get('/', async (req, res) => {
     

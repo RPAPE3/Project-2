@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-
-
 // Create a new USER code //
 // Goes to /api/users //
 
@@ -66,6 +64,23 @@ router.post('/logout', (req, res) => {
     });
   } else {
     res.status(404).end();
+  }
+});
+
+router.get('/states', async (req, res) => { 
+  try {
+    const states = await State.findAll();
+
+    if (!states) {
+      res
+        .status(400)
+        .json({ message: 'No states found' });
+      return;
+    }
+
+    res.json(states);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
