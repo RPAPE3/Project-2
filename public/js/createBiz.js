@@ -1,14 +1,3 @@
-// const addShop = () => {
-
-//     document.location.replace('api/shops/createBiz');
-  
-//   }
-  
-//   document
-//   .querySelector('#add-shop')
-//   .addEventListener('click', addShop);
-
-
 const createBizFormHandler = async (event) => {
     event.preventDefault();
 
@@ -18,7 +7,6 @@ const createBizFormHandler = async (event) => {
     const shop_state = document.querySelector('#state-create').value.trim();
     const zip = document.querySelector('#zip-create').value.trim();
     const phone = document.querySelector('#phone-create').value.trim();
-    // const comment = document.querySelector('#comment-create').value.trim();
 
     console.log(shop_name, address, city, shop_state, zip, phone);
 
