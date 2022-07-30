@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Shop, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // PATH FOR CREATE NEW COMMENT
 router.post('/', async (req, res) => {
@@ -17,6 +18,16 @@ router.post('/', async (req, res) => {
     } catch (err) {
       res.status(400).json(err);
     }
+  });
+
+  router.get('/createComment', withAuth, (req, res) => {
+
+    if (req.session.logged_in) {
+      res.render('createComment');
+      return;
+    }
+  
+    res.render('login');
   });
 
   module.exports = router;

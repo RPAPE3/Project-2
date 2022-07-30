@@ -27,6 +27,11 @@ Shop.init(
             allowNull: false,
         },
 
+        shop_state: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+
         zip: {
             type: DataTypes.INTEGER,
             allowNull: false,
