@@ -56,6 +56,7 @@ anychart.theme('lightBlue');
       map.geoData('anychart.maps.united_states_of_america');
 
       // sets credits settings
+/*      
       map
         .credits()
         .enabled(true)
@@ -65,7 +66,7 @@ anychart.theme('lightBlue');
         .text(
           'Data source: https://en.wikipedia.org/wiki/United_States_presidential_election,_2008'
         );
-
+*/
       // sets title settings
       map
         .title()
@@ -73,13 +74,14 @@ anychart.theme('lightBlue');
         .useHtml(true)
         .padding([0, 0, 10, 0])
         .text(
-          'Repair Shops in the United States <br/><span style="color:#212121; font-size: 13px;">'
+          'Repair Shops in the United States'
         );
 
       // sets map padding and interactivity settings
       map.padding([10, 10, 10, 10]);
       map.interactivity().selectionMode('none');
 
+/*
       var menu = map.contextMenu();
       // add item DrillUp for context menu
       menu.itemsFormatter(function (items) {
@@ -96,20 +98,20 @@ anychart.theme('lightBlue');
         items['drill-up'].enabled = path.length > 1;
 
         return items;
-      });
-
+      }); 
+*/
       // set map legend settings
       map
         .legend()
-        .enabled(false)
+        .enabled(true)
         .position('center-top')
         .padding([0, 0, 20, 0]);
 
       // create choropleth series based on Obama data
       var obamaSeries = createSeries(
         map,
-        'Barack Obama',
-        { value: 'Obama' },
+        'Shops',
+        { value: 'Shops' },
         filterFunction(electionData, 'Obama', 'McCain')
       );
       obamaSeries.colorScale(obamaColorScale).legendItem(obamaLegendItem);
@@ -117,8 +119,8 @@ anychart.theme('lightBlue');
       // create choropleth series based on McCain data
       var mcCainSeries = createSeries(
         map,
-        'John McCain',
-        { value: 'McCain' },
+        'No Shops',
+        { value: 'No Shops' },
         filterFunction(electionData, 'McCain', 'Obama')
       );
       mcCainSeries.colorScale(mcCainColorScale).legendItem(mcCainLegendItem);
