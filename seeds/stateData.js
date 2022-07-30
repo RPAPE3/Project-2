@@ -1,150 +1,256 @@
-const { State } = require('../models');
+const { State } = require("../models");
 
 const stateData = [
-{  //1
+  {
+    code: "US.AL",
     state_name: "Alabama",
-},
-{   //2
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Alabama.png",
+  },
+  {
+    code: "US.AZ",
     state_name: "Arizona",
-},
-{   //3
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Arizona.png",
+  },
+  {
+    code: "US.AR",
     state_name: "Arkansas",
-},
-{   //4
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Arkansas.png",
+  },
+  {
+    code: "US.CA",
     state_name: "California",
-},
-{   //5
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_California.png",
+  },
+  {
+    code: "US.CO",
     state_name: "Colorado",
-},
-{   //6
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Colorado.png",
+  },
+  {
+    code: "US.CT",
     state_name: "Connecticut",
-},
-{   //7
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Connecticut.png",
+  },
+  {
+    code: "US.DE",
     state_name: "Delaware",
-},
-{   //8
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Delaware.png",
+  },
+  {
+    code: "US.FL",
     state_name: "Florida",
-},
-{   //9
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Florida.png",
+  },
+  {
+    code: "US.GA",
     state_name: "Georgia",
-},
-{   //10
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Georgia.png",
+  },
+  {
+    code: "US.ID",
     state_name: "Idaho",
-},
-{   //11
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Idaho.png",
+  },
+  {
+    code: "US.IL",
     state_name: "Illinois",
-},
-{   //12
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Illinois.png",
+  },
+  {
+    code: "US.IN",
     state_name: "Indiana",
-},
-{   //13
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Indiana.png",
+  },
+  {
+    code: "US.IA",
     state_name: "Iowa",
-},
-{   //14
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Iowa.png",
+  },
+  {
+    code: "US.KS",
     state_name: "Kansas",
-},
-{   //15
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Kansas.png",
+  },
+  {
+    code: "US.KY",
     state_name: "Kentucky",
-},
-{   //16
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Kentucky.png",
+  },
+  {
+    code: "US.LA",
     state_name: "Louisiana",
-},
-{   //17
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Louisiana.png",
+  },
+  {
+    code: "US.ME",
     state_name: "Maine",
-},
-{   //18
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Maine.png",
+  },
+  {
+    code: "US.MD",
     state_name: "Maryland",
-},
-{   //19
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Maryland.png",
+  },
+  {
+    code: "US.MA",
     state_name: "Massachusetts",
-},
-{   //20
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Massachusetts.png",
+  },
+  {
+    code: "US.MI",
     state_name: "Michigan",
-},
-{   //21
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Michigan.png",
+  },
+  {
+    code: "US.MN",
     state_name: "Minnesota",
-},
-{   //22
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Minnesota.png",
+  },
+  {
+    code: "US.MS",
     state_name: "Mississippi",
-},
-{   //23
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Mississippi.png",
+  },
+  {
+    code: "US.MO",
     state_name: "Missouri",
-},
-{   //24
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Missouri.png",
+  },
+  {
+    code: "US.MT",
     state_name: "Montana",
-},
-{   //25
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Montana.png",
+  },
+  {
+    code: "US.NE",
     state_name: "Nebraska",
-},
-{   //26
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Nebraska.png",
+  },
+  {
+    code: "US.NV",
     state_name: "Nevada",
-},
-{   //27
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Nevada.png",
+  },
+  {
+    code: "US.NH",
     state_name: "New Hampshire",
-},
-{   //28
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_New_Hampshire.png",
+  },
+  {
+    code: "US.NJ",
     state_name: "New Jersey",
-},
-{   //29
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_New_Jersey.png",
+  },
+  {
+    code: "US.NM",
     state_name: "New Mexico",
-},
-{   //30
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_New_Mexico.png",
+  },
+  {
+    code: "US.NY",
     state_name: "New York",
-},
-{   //31
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_New_York.png",
+  },
+  {
+    code: "US.NC",
     state_name: "North Carolina",
-},
-{   //32
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_North_Carolina.png",
+  },
+  {
+    code: "US.ND",
     state_name: "North Dakota",
-},
-{   //33
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_North_Dakota.png",
+  },
+  {
+    code: "US.OH",
     state_name: "Ohio",
-},
-{   //34
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Ohio.png",
+  },
+  {
+    code: "US.OK",
     state_name: "Oklahoma",
-},
-{   //35
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Oklahoma.png",
+  },
+  {
+    code: "US.OR",
     state_name: "Oregon",
-},
-{   //36
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Oregon.png",
+  },
+  {
+    code: "US.PA",
     state_name: "Pennsylvania",
-},
-{   //37
-    state_name: "Rhode Island"
-},
-{   //38
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Pennsylvania.png",
+  },
+  {
+    code: "US.RI",
+    state_name: "Rhode Island",
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Rhode_Island.png",
+  },
+  {
+    code: "US.SC",
     state_name: "South Carolina",
-},
-{   //39
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_South_Carolina.png",
+  },
+  {
+    code: "US.SD",
     state_name: "South Dakota",
-},
-{   //40
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_South_Dakota.png",
+  },
+  {
+    code: "US.TN",
     state_name: "Tennessee",
-},
-{   //41
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Tennessee.png",
+  },
+  {
+    code: "US.TX",
     state_name: "Texas",
-},
-{   //42
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Texas.png",
+  },
+  {
+    code: "US.UT",
     state_name: "Utah",
-},
-{   //43
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Utah.png",
+  },
+  {
+    code: "US.VT",
     state_name: "Vermont",
-},
-{   //44
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Vermont.png",
+  },
+  {
+    code: "US.VA",
     state_name: "Virginia",
-},
-{   //45
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Virginia.png",
+  },
+  {
+    code: "US.WA",
     state_name: "Washington",
-},
-{   //46
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Washington.png",
+  },
+  {
+    code: "US.WV",
     state_name: "West Virginia",
-},
-{   //47
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_West_Virginia.png",
+  },
+  {
+    code: "US.WI",
     state_name: "Wisconsin",
-},
-{   //48
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Wisconsin.png",
+  },
+  {
+    code: "US.WY",
     state_name: "Wyoming",
-}
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Wyoming.png",
+  },
+  {
+    code: "US.AK",
+    state_name: "Alaska",
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Alaska.png",
+  },
+  {
+    code: "US.HI",
+    state_name: "Hawaii",
+    flag: "http://static.anychart.com/images/maps_samples/States_of_United_States_Dashboard_with_MultiSelect/Flag_of_Hawaii.png",
+  },
 ];
 
 const seedState = () => State.bulkCreate(stateData);
