@@ -2,8 +2,6 @@ const router = require('express').Router();
 const { Shop, State, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
-
 // PATH FOR CREATE NEW SHOP
 router.post('/', async (req, res) => {
     console.log(req.body)
