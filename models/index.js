@@ -12,11 +12,11 @@ State.hasMany(Shop, {
   });
 
   Shop.hasMany(Comment, {
-    foreignKey: 'shop_id',
+    foreignKey: 'state_id',
   });
   
   Comment.belongsTo(Shop, {
-    foreignKey: 'shop_id',
+    foreignKey: 'state_id',
   });
 
 module.exports = { User, State, Shop, Comment };

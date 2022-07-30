@@ -17,13 +17,14 @@ const createBizFormHandler = async (event) => {
     const city = document.querySelector('#city-create').value.trim();
     const state = document.querySelector('#state-create').value.trim();
     const zip = document.querySelector('#zip-create').value.trim();
-    // const comment = document.querySelector('#comment-create').value.trim();
+    const phone = document.querySelector('#phone-create').value.trim();
+    const comment = document.querySelector('#comment-create').value.trim();
 
-    if (shopName && address && city && state && zip) {
+    if (shopName && address && city && zip && phone && comment) {
 
         const response = await fetch('/api/shops', {
             method: 'POST',
-            body: JSON.stringify({ shopName, address, city, state, zip}),
+            body: JSON.stringify({ shopName, address, city, zip, phone, state, comment }),
             headers: { 'Content-type': 'application/json'},
     });
     

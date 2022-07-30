@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Shop, State } = require('../../models');
+const { Shop, State, Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 
@@ -8,18 +8,26 @@ const withAuth = require('../../utils/auth');
 router.post('/', async (req, res) => {
     console.log(req.body)
     try {
+      const thisComment = await Comment.create({
+        comment: req.body.comment,
+        shop_id: 
+      });
+
+    }
+
+    try {
       const stateString = req.body.state;
       const state = await State.findOne({
         where: { name: stateString }
-      })
-      console.log(state);
+      });
       const shopData = await Shop.create({
         shop_name: req.body.shop_name,
         address: req.body.address,
         city: req.body.city,
         zip: req.body.zip,
         phone: req.body.phone,
-        state: state.id,
+        state_id: state.id,
+        comment_id: comment.id,
     });
     res.status(200).json(shopData);
     } catch (err) {

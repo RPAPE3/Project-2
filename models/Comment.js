@@ -17,10 +17,10 @@ Comment.init(
             allowNull: false,
         },
         
-        shop_id: {
+        state_id: {
             type: DataTypes.INTEGER,
             references: {
-              model: 'shop',
+              model: 'state',
               key: 'id',
             },
           },
