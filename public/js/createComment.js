@@ -13,7 +13,7 @@ const createCommentFormHandler = async (event) => {
     });
     
         if(response.ok) {
-            document.location.replace('/shop/:id');
+            document.location.replace('../');
         } else {
             alert('Failed to add comment');
         }

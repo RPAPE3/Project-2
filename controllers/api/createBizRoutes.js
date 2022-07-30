@@ -6,18 +6,20 @@ const withAuth = require('../../utils/auth');
 router.post('/', async (req, res) => {
     console.log(req.body)
     try {
-      const stateString = req.body.state;
-      const state = await State.findOne({
-        where: { name: stateString }
-      })
+      const stateString = req.body.shop_state;
+      const stateObj = await State.findOne({
+        where: { state_name: stateString }
+      });
+      const state = stateObj.get({ plain:true });
       console.log(state);
       const shopData = await Shop.create({
         shop_name: req.body.shop_name,
         address: req.body.address,
         city: req.body.city,
+        shop_state: req.body.shop_state,
         zip: req.body.zip,
         phone: req.body.phone,
-        state: state.id,
+        state_id: state.id,
     });
     res.status(200).json(shopData);
     } catch (err) {
@@ -37,4 +39,3 @@ router.post('/', async (req, res) => {
 
   module.exports = router;
   
-  // redirect
