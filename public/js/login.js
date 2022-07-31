@@ -1,3 +1,9 @@
+// const loginRoute = () => {
+//   document.location.replace('/login');
+// }
+
+// document.querySelector('#login-create').addEventListener('click', loginRoute);
+
 
 const loginFormHandler = async (event) => {
 
@@ -22,9 +28,4 @@ const loginFormHandler = async (event) => {
     }
   };
   
-  var loginForm = document.querySelector('.login-form');
-
-  if (loginForm) {
-    loginForm.addEventListener('submit', loginFormHandler);
-  }
-  
+document.querySelector('.login-form').addEventListener('submit', loginFormHandler);

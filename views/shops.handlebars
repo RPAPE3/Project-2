@@ -1,33 +1,40 @@
 <body>
 <div  class="position-absolute top-0 start-50 translate-middle"></div>
 
-            <div  class="position-absolute top-0 start-50 translate-middle">
-                <label for="address" class="position-absolute top-0 start-50 translate-middle"></label>
-            </div>
-            <div>
-            <label for="CityName">{{ shop.shop_name}}</label>
-            </div>
-            <div>
-            <label for="CityName">Shop Address: {{ shop.address }} </label>
-            </div>
-            <div>
-            <label for="CityName">City: </label>
-            </div>
-            <div>
-            <label for="zip" >zip:</label>
-            </div>
-            <div>
-            <label for="phone" >phone:</label>
-            </div>
-        </div>
 
-        <div>
-            <label for="Comments" >Comments and Reviews: {{ Comment.comment }}</label>
+
+<div class="container text-center">
+  <div class="row">
+   <div class="col fs-1">
+            <label for="shopname">{{ shop.shop_name}}</label>
+            </div>
+    <div class="row fs-1">
+        <label for="phone" >Phone  {{ shop.phone }}</label>
+            </div>
+  </div>
+  <div class="row m-2">
+     <div class="col fs-2">
+            <label for="CityName">{{ shop.address }} </label>
+            </div>
+     <div class="col fs-2">
+            <label for="CityName"> {{ shop.city }}, {{ shop.shop_state }} </label>
+            </div>
+    <div class="col fs-2">
+            <label for="zip" > {{ shop.zip }}</label>
+            </div>
+  </div>
+
+            
+        <div class="row m-4 fs-2">
+            <label for="Comments" >Comments and Reviews: {{ comment.comment }}</label>
             </div>
 
-            <div>
-    <button type="submit" class="offset-md-3 btn btn-primary">ADD A COMMENT</button>
+            <div class="row">
+        <button type="submit" class="offset-md-3 btn btn-primary" id="add-comment">ADD A COMMENT</button>
             </div>
+</div>
+    <script src="/js/test2.js"></script>
+       
 </body>
 {{!-- NEEDS TO BE CONNECTEd TO SHOP CREATOR --}}
         {{!-- <script src="/js/create.js"></script> --}}
