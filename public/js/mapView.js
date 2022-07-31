@@ -1,8 +1,6 @@
 var mapSeries;
 var mapChart;
-var tableCharts;
 var dataSet;
-var tableChart;
 var populationChart;
 var areaChart;
 var houseSeatsChart;
@@ -11,10 +9,10 @@ anychart.onDocumentReady(async function () {
   // The data used in this sample can be obtained from the CDN
   // https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json
   anychart.data.loadJsonFile(
-      //"https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json",
-      '/api/data/states',
+    //"https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json",
+    "/api/data/states",
     function (data) {
-console.log(data);        
+      console.log(data);
       // pre-processing of the data
       for (var i = 0; i < data.length; i++) {
         data[i].id = data[i].code;
@@ -23,9 +21,7 @@ console.log(data);
         data[i].short = data[i].code;
       }
       dataSet = anychart.data.set(data);
-      tableChart = getTableChart();
       mapChart = drawMap();
-      //   tableCharts = getTableCharts();
 
       // Setting layout table
       var layoutTable = anychart.standalones.table();
@@ -33,74 +29,45 @@ console.log(data);
       layoutTable.container("container");
       layoutTable.draw();
 
-      function getTableChart() {
-        var table = anychart.standalones.table();
-        table.cellBorder(null);
-        table.fontSize(11).vAlign("middle").fontColor("#212121");
-        table
-          .getCell(0, 0)
-          .colSpan(8)
-          .fontSize(14)
-          .vAlign("top")
-          .border()
-          .bottom("1px #dedede")
-          .fontColor("#7c868e");
-        table
-          .useHtml(true)
-          .contents([
-            ["Selected States Data"],
-            [
-              null,
-              "Name",
-              "# Shops",
-            ],
-            [null],
-          ]);
-        table.getRow(1).cellBorder().bottom("2px #dedede").fontColor("#7c868e");
-        table.getRow(0).height(45).hAlign("center");
-        table.getRow(1).height(35);
-        table.getCol(0).width(25);
-        table.getCol(1).hAlign("left");
-        table.getCol(2).hAlign("left");
-        table.getCol(2).width(50);
-        return table;
+      async function apiQuery(apiPath, params) {
+          let url = new URL(`${window.location.origin}/api/${apiPath}`);
+          
+          params.forEach((p) => url.searchParams.append(p.name, p.value));
+            console.log('apiQuery: url: ', url);
+          return await fetch(url).then((res) => res.json());
       }
+      //
+      async function changeContent(ids) {
+        console.log("changeContent(): ids:", ids);
+        // let url = new URL(window.location.origin + "/api/data/shopsInStates");
+        // ids.forEach((id) => {
+        //   // appending state codes
+        //   // server side interpretation to resolve the string into an array
+        //   // stateCodes[] forces it to be an array server side
+        //   url.searchParams.append("stateCodes[]", getDataId(id).code);
+        //   console.log(getDataId(id));
+        //   //     console.log(getDataId(id));
+        //   // //   getDataId.getDataId(id);
+        // });
 
-      function changeContent(ids) {
-        var i;
-        var contents = [
-          ["Selected States"],
-          [
-            null,
-            "Name",
-            "Shops",
-          ],
-        ];
-        for (i = 0; i < ids.length; i++) {
-          var data = getDataId(ids[i]);
-console.log('i:', i, 'id:', ids[i], 'data:', data);
-          var label = anychart.standalones.label();
-          label
-            .width("100%")
-            .height("100%")
-            .text("")
-            .background()
-            .enabled(true)
-            .fill({
-              src: data.flag,
-              mode: "fit",
-            });
-          contents.push([
-            label,
-            data.name,
-            data.value
-          ]);
-        }
+        let shops = (ids && ids.length > 0)
+            ? await apiQuery('data/shopsInStates', ids.map((id) => ({ name: 'stateCodes[]', value: getDataId(id).code })))
+            : [];
+        // console.log(shops);
 
-        tableChart.contents(contents);
-        for (i = 0; i < ids.length; i++) {
-          tableChart.getRow(i + 2).maxHeight(35);
-        }
+        let tbody = $("table.shops tbody");
+        tbody.empty();
+
+        shops.forEach(async (shop) => {
+         let comments =  await apiQuery('data/shopComments', [ { name: 'shopId', value: shop.id } ]);
+         let [state] = await apiQuery('data/state', [ { name: 'stateId', value: shop.state_id } ]);
+         console.log('shop, state:', shop, state);
+          tbody.append(`<tr>
+            <td><img src="${state.flag}"/></td>
+            <td><a> ${shop.shop_name} </a></td>
+            <td><a> ${comments.length} </a></td>
+            </tr>`);
+        });
       }
 
       function drawMap() {
@@ -126,21 +93,21 @@ console.log('i:', i, 'id:', ids[i], 'data:', data);
         mapSeries.labels(null);
         mapSeries.tooltip().useHtml(true);
         mapSeries.tooltip().title().useHtml(true);
-        mapSeries.tooltip().titleFormat(function() {
-           return this.name;
+        mapSeries.tooltip().titleFormat(function () {
+          return this.name;
         });
-        mapSeries.tooltip().format(function() {
+        mapSeries.tooltip().format(function () {
           var data = getDataId(this.id);
           return `<span style="font-size: 12px; color: #b7b7b7">Number of Shops: </span>${data.shop_count}`;
         });
         var scale = anychart.scales.ordinalColor([
           { less: 0 },
-          { from: 0, to: 1 },
-          { from: 2, to: 3 },
-          { from: 4, to: 5 },
-          { from: 6, to: 7 },
-          { from: 8, to: 9 },
-          { greater: 9 },
+          { from: 1, to: 2 },
+          { from: 3, to: 4 },
+          { from: 5, to: 6 },
+          { from: 7, to: 8 },
+          { from: 9, to: 10 },
+          { greater: 11 },
         ]);
         scale.colors([
           "#eee",
@@ -184,9 +151,9 @@ console.log('i:', i, 'id:', ids[i], 'data:', data);
             if (isFinite(range.start + range.end)) {
               name = range.start + " - " + range.end;
             } else if (isFinite(range.start)) {
-              name = "After " + range.start;
+              name = "Greater Than"  + range.start;
             } else {
-              name = "Before " + range.end;
+              name = "" + range.end;
             }
             return name;
           });
@@ -196,10 +163,10 @@ console.log('i:', i, 'id:', ids[i], 'data:', data);
       // Creates general layout table with two inside layout tables
       function fillInMainTable(flag) {
         if (flag === "wide") {
-          layoutTable.contents([[mapChart], [tableChart]], true);
+          layoutTable.contents([[mapChart]], true);
           layoutTable.getRow(0).height(null);
         } else {
-          layoutTable.contents([[mapChart], [tableChart]], true);
+          layoutTable.contents([[mapChart]], true);
           layoutTable.getRow(0).height(350);
         }
         layoutTable.draw();
