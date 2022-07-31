@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
     }
   });
 
+  //Makes sure the user is logged in before allowing them to add a comment. 
   router.get('/createComment', withAuth, (req, res) => {
 
     if (req.session.logged_in) {

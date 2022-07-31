@@ -1,8 +1,4 @@
-const createRoute = () => {
-  document.location.replace('/login');
-}
 
-document.querySelector('#login-create').addEventListener('click', createRoute);
 
 const createUserFormHandler = async (event) => {
     event.preventDefault();
