@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { User } = require('../models');
-const { Shop } = require('../models');
+const { User, Shop, Comment } = require('../models');
+// const { Shop } = require('../models');
 const withAuth = require('../utils/auth');
 
 // user route
@@ -52,10 +52,16 @@ router.get('/shop/:id', async (req, res) => {
     });
 
     const shop = shopData.get({ plain: true });
+
+    // const commentData = await Comment.findAll({
+    //   where: {shop_id: shop}
+    // });
+
+    // const comment = commentData.get({ plain: true });
 // needs to be rendered to a shops page
     res.render('shops', {
       shop,
-      
+      // commentData,
     });
   } catch (err) {
     res.status(500).json(err);
