@@ -1,3 +1,9 @@
+const loginRoute = () => {
+  document.location.replace('/login');
+}
+
+document.querySelector('#login-create').addEventListener('click', loginRoute);
+
 
 const loginFormHandler = async (event) => {
 
