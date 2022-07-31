@@ -53,15 +53,15 @@ router.get('/shop/:id', async (req, res) => {
 
     const shop = shopData.get({ plain: true });
 
-    // const commentData = await Comment.findAll({
-    //   where: {shop_id: shop}
-    // });
+    const commentData = await Comment.findOne({
+      where: {shop_id: shop.id}
+    });
 
-    // const comment = commentData.get({ plain: true });
+    const comment = commentData.get({ plain: true });
 // needs to be rendered to a shops page
     res.render('shops', {
       shop,
-      // commentData,
+      comment,
     });
   } catch (err) {
     res.status(500).json(err);
