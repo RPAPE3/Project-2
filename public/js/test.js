@@ -7,3 +7,4 @@ const addShop = () => {
   document
   .querySelector('#add-shop')
   .addEventListener('click', addShop);
+

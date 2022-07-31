@@ -19,6 +19,7 @@ const createBizFormHandler = async (event) => {
     });
     
         if(response.ok) {
+            alert(`${shop_name} Added! Redirecting back to homepage.`);
             document.location.replace('../../');
         } else {
             alert('Failed to add shop');
@@ -26,6 +27,5 @@ const createBizFormHandler = async (event) => {
     }
 };
 
-document
-.querySelector('.createBiz-form')
-.addEventListener('submit', createBizFormHandler);
+document.querySelector('.createBiz-form').addEventListener('submit', createBizFormHandler);
+
