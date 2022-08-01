@@ -12,9 +12,9 @@ html {
   /* 2 */
 }
 
-footer {
+/* footer {
   position: sticky;
-}
+} */
 
 .icon {
   height: 100px;
@@ -38,6 +38,10 @@ footer {
       background-position: 0% 50%;
   }
 }
+
+/* .hide {
+  display: block;
+} */
 
 .mapCont {
   background-color: rgb(143, 159, 167),
