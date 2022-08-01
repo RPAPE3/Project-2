@@ -33,12 +33,12 @@ anychart.onDocumentReady(async function () {
           let url = new URL(`${window.location.origin}/api/${apiPath}`);
           
           params.forEach((p) => url.searchParams.append(p.name, p.value));
-            console.log('apiQuery: url: ', url);
+            // console.log('apiQuery: url: ', url);
           return await fetch(url).then((res) => res.json());
       }
       //
       async function changeContent(ids) {
-        console.log("changeContent(): ids:", ids);
+        // console.log("changeContent(): ids:", ids);
         // let url = new URL(window.location.origin + "/api/data/shopsInStates");
         // ids.forEach((id) => {
         //   // appending state codes
