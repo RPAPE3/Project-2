@@ -48,20 +48,21 @@ router.get('/shop/:id', async (req, res) => {
     
   try {
     const shopData = await Shop.findOne({
-      where: {id: req.params.id}
+      where: {id: req.params.id},
+      include:[{model: Comment}]
     });
 
     const shop = shopData.get({ plain: true });
 
-    const commentData = await Comment.findOne({
-      where: {shop_id: shop.id}
-    });
-
-    const comment = commentData.get({ plain: true });
+    // const commentData = await Comment.findAll({
+    //   where: {shop_id: shop.id}
+    // });
+    console.log(shop)
+    // const comment = commentData.get({ plain: true });
 // needs to be rendered to a shops page
     res.render('shops', {
       shop,
-      comment,
+      // comment,
       logged_in: req.session.logged_in
     });
   } catch (err) {

@@ -1,5 +1,5 @@
 const loginRoute = () => {
-    document.location.replace('/login');
+    document.location.assign('/login');
   }
   
   document.querySelector('#login-create').addEventListener('click', loginRoute);
