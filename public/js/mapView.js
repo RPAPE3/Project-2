@@ -5,6 +5,7 @@ var populationChart;
 var areaChart;
 var houseSeatsChart;
 
+
 anychart.onDocumentReady(async function () {
   // The data used in this sample can be obtained from the CDN
   // https://cdn.anychart.com/samples/maps-in-dashboard/states-of-united-states-dashboard-with-multi-select/data.json
@@ -60,7 +61,7 @@ anychart.onDocumentReady(async function () {
         // console.log(shops);
 
         function req(event, data='', method='GET',url='/shop/:id') {
-            console.debug(event);
+            // console.debug(event);
             event.preventDefault();
             fetch(url, {method: "POST"}).then(() => {
                 location.href = event.target.href;
@@ -90,6 +91,16 @@ anychart.onDocumentReady(async function () {
         map.title("Repair Shops in the United States");
         map.padding([0, 0, 10, 0]);
 
+
+        map.background().fill({
+            keys: ["#ddd8d7"],
+        })
+        .stroke({
+            color: "black",
+            thickness: 0
+        })
+        .cornerType("round")
+        .corners(5);
         // set map Geo data
         map.geoData("anychart.maps.united_states_of_america");
 
