@@ -23,7 +23,14 @@
 
             
         <div class="row m-4 fs-2">
-            <label for="Comments" >Comments and Reviews: {{ comment.comment }}</label>
+            <label for="Comments" >Comments and Reviews:  </label>
+            <table>
+            <ol>
+               {{#each shop.comments }}
+               <li class="display">{{this.comment}}</li> 
+               {{/each}}
+            </ol>
+            </table>
             </div>
 
             <div class="row">
