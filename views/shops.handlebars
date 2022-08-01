@@ -27,9 +27,15 @@
 
             
         <div class="row m-4 fs-2">
-            <label for="Comments" >Comments and Reviews: {{ comment.comment }}</label>
+            <label for="Comments" > Comments and Reviews: </label>
+            <ul>
+               {{#each shop.comments}} 
+               <li class="display">{{this.comment}}</li>
+               {{/each}} 
+            </ul>
             </div>
-
+           
+    
             <div class="row">
         <button type="submit" class="offset-md-3 btn btn-primary" id="add-comment">ADD A COMMENT</button>
             </div>
