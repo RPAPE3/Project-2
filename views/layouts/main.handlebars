@@ -37,31 +37,43 @@
 </style>
 </head>
 
-<body>
   <header class="display-flex justify-space-between align-center p-3 text-bg-dark">
+    <a href="/"><img class="icon" src="https://i.ibb.co/PG51753/iconOne.png" alt="iconOne" border="0"></a>
     <h1>
       Repair Shops
     </h1>
     <nav class="nav-buttons"> 
+  
 
     {{#unless logged_in}}
-    <button class="btn" id="login-create">login/create</button>
+    <button class="btn btn-primary" id="login-create">login/create</button>
       <script src="/js/test3.js"></script>
     {{/unless}}
       
     {{#if logged_in}}
-      <button class="btn" id="logout">logout</button>
+      <button class="btn btn-secondary" id="logout">logout</button>
         <script src="/js/logout.js"></script>
     {{/if}}
     </nav>
   
   </header>
+<body class="main-background d-flex flex-column min-vh-100">
   <main class="container container-fluid mt-5">
     {{{ body }}}
   </main>
-  <footer>
-  
+ 
+    
+  <footer class="mt-auto py-3 my-4 text-color-light">
+      <ul class="nav justify-content-center border-top pb-3 mb-3">
+      <li class="nav-item"><a href="https://github.com/RPAPE3/Project-2" class="nav-link px-2 text-white">Our Team:</a></li>
+      <li class="nav-item"><a href="https://github.com/BrandtDavidson" class="nav-link px-2 text-white">Brandt Davidson</a></li>
+      <li class="nav-item"><a href="https://github.com/RPAPE3" class="nav-link px-2 text-white">Robby Pape</a></li>
+      <li class="nav-item"><a href="https://github.com/jstoozy23" class="nav-link px-2 text-white">Jeff Stutzman</a></li>
+      <li class="nav-item"><a href="https://github.com/bighamcyrus" class="nav-link px-2 text-white">Cyrus Bigham</a></li>
+      
+    </ul>
   </footer>
+
 
   {{#if logged_in}}
   <script src="/js/logout.js"></script>
