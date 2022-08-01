@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   router.get('/createBiz', withAuth, (req, res) => {
 
     if (req.session.logged_in) {
-      res.render('createBiz');
+      res.render('createBiz', {logged_in: req.session.logged_in});
       return;
     }
   

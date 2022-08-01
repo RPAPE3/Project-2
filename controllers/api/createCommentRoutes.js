@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
   router.get('/createComment', withAuth, (req, res) => {
 
     if (req.session.logged_in) {
-      res.render('createComment');
+      res.render('createComment', {shop_name: req.query.shop_name, logged_in: req.session.logged_in});
       return;
     }
   
