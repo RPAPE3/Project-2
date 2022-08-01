@@ -33,12 +33,16 @@ anychart.onDocumentReady(async function () {
           let url = new URL(`${window.location.origin}/api/${apiPath}`);
           
           params.forEach((p) => url.searchParams.append(p.name, p.value));
-            console.log('apiQuery: url: ', url);
+            // console.log('apiQuery: url: ', url);
           return await fetch(url).then((res) => res.json());
       }
+
+    
+      
+
       //
       async function changeContent(ids) {
-        console.log("changeContent(): ids:", ids);
+        // console.log("changeContent(): ids:", ids);
         // let url = new URL(window.location.origin + "/api/data/shopsInStates");
         // ids.forEach((id) => {
         //   // appending state codes
@@ -55,6 +59,15 @@ anychart.onDocumentReady(async function () {
             : [];
         // console.log(shops);
 
+        function req(event, data='', method='GET',url='/shop/:id') {
+            console.debug(event);
+            event.preventDefault();
+            fetch(url, {method: "POST"}).then(() => {
+                location.href = event.target.href;
+            });
+        }
+        
+
         let tbody = $("table.shops tbody");
         tbody.empty();
 
@@ -64,7 +77,7 @@ anychart.onDocumentReady(async function () {
          console.log('shop, state:', shop, state);
           tbody.append(`<tr>
             <td><img src="${state.flag}"/></td>
-            <td><a> ${shop.shop_name} </a></td>
+            <td><a href='/shop/${shop.id}' onclick="req(event, 'name=vmode&value=full','POST','/cookie')"> ${shop.shop_name} </a></td>
             <td><a> ${comments.length} </a></td>
             </tr>`);
         });
