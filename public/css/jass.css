@@ -12,6 +12,10 @@ html {
   /* 2 */
 }
 
+/* footer {
+  position: sticky;
+} */
+
 .icon {
   height: 100px;
   width: 100px;
@@ -34,6 +38,10 @@ html {
       background-position: 0% 50%;
   }
 }
+
+/* .hide {
+  display: block;
+} */
 
 .mapCont {
   background-color: rgb(143, 159, 167),
