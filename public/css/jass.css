@@ -12,6 +12,10 @@ html {
   /* 2 */
 }
 
+footer {
+  position: sticky;
+}
+
 .icon {
   height: 100px;
   width: 100px;
