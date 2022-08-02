@@ -1,6 +1,3 @@
-<body>
-<div  class="position-absolute top-0 start-50 translate-middle"></div>
-
 
 
 <div class="container text-center">
@@ -26,22 +23,23 @@
 
             
         <div class="row m-4 fs-2">
-            <label for="Comments" > Comments and Reviews: </label>
-            <ul>
-               {{#each shop.comments}} 
-               <li class="display">{{this.comment}}</li>
-               {{/each}} 
-            </ul>
+            <label for="Comments" >Comments and Reviews:  </label>
+            <table>
+            <ol>
+               {{#each shop.comments }}
+               <li class="display">{{this.comment}}</li> 
+               {{/each}}
+            </ol>
+            </table>
             </div>
-           
-    
+
             <div class="row">
         <button type="submit" class="offset-md-3 btn btn-primary" id="add-comment">ADD A COMMENT</button>
             </div>
 </div>
     <script src="/js/test2.js"></script>
        
-</body>
+
 {{!-- NEEDS TO BE CONNECTEd TO SHOP CREATOR --}}
         {{!-- <script src="/js/create.js"></script> --}}
 

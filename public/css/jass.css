@@ -12,9 +12,51 @@ html {
   /* 2 */
 }
 
+/* footer {
+  position: sticky;
+} */
+
+.icon {
+  height: 100px;
+  width: 100px;
+  display: block;
+}
+
 .nav-buttons {
   display: flex;
   justify-content: right;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+/* .hide {
+  display: block;
+} */
+
+.mapCont {
+  background-color: rgb(143, 159, 167),
+}
+
+.main-background {
+  background: linear-gradient(-45deg, #928f8fbd, #5e5c5ccd, #595c5e54, #8eadad36);
+    background-size: 400% 400%;
+    animation: gradient 60s ease infinite;
+}
+
+.nav-background {
+  background: linear-gradient(-45deg, #ddd8d7, #2e2e2e, #9cadb4, #90d6d6);
+    background-size: 400% 400%;
+    animation: gradient 30s ease infinite;
 }
 
 /* Sections
