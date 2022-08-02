@@ -38,9 +38,6 @@ anychart.onDocumentReady(async function () {
           return await fetch(url).then((res) => res.json());
       }
 
-    
-      
-
       //
       async function changeContent(ids) {
         // console.log("changeContent(): ids:", ids);
